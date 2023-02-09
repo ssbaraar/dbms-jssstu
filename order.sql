@@ -92,11 +92,17 @@ SELECT * FROM Shipments;
 SELECT * FROM Warehouses;
 
 select order_id,ship_date from Shipments s where s.warehouse_id=2;
+
 select s.order_id,s.warehouse_id from Shipments s,Orders o,Customers c where s.order_id=o.order_id and o.cust_id=c.cust_id and c.cname="Kumar";
+
 select cname,count(o.order_id) as no_of_orders,AVG(o.order_amt) as avg_amt from Customers c,Orders o where o.cust_id=c.cust_id group by(o.cust_id);
+
 delete from Orders where cust_id in (select cust_id from Customers c where c.cname like "%Kumar%");
+
 select item_id,unitprice from Items i ORDER BY(i.unitprice) DESC LIMIT 1;
+
 create view order_shipment as select order_id,ship_date from Shipments s where warehouse_id=5;
+
 DELIMITER $$
 create trigger UpdateOrderAmt
 after insert on OrderItems
